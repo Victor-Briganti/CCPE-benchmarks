@@ -14,14 +14,12 @@ APPROXIMATION = [
     "perfo_default",
 ]
 default_df = pd.read_csv(DEFAULT, header=None)
-# default_df = default_df.drop(default_df.columns[[34]], axis=1) # pyright: ignore[reportCallIssue, reportArgumentType]
 
 def calculate_mcr(filepath):
     results = []
     for i in range(0, 10):
         csv_path = filepath + '-' + str(i) + ".csv"
         approx_df = pd.read_csv(csv_path, header=None)
-        # approx_df = approx_df.drop(approx_df.columns[[34]], axis=1)  # pyright: ignore[reportCallIssue, reportArgumentType]
 
         results.append(((default_df != approx_df).sum().sum() / default_df.size))
 

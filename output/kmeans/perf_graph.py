@@ -50,7 +50,7 @@ def calculate_speedup(dirpath, approx, thread):
     default_df = pd.read_csv(DEFAULT)
 
     results = []
-    for file in os.listdir(dirpath):
+    for file in sorted(os.listdir(dirpath)):
         if (approx + thread) in file:
             approx_df = pd.read_csv(dirpath + "/" + file)
             for value in approx_df['real']:

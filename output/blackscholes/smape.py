@@ -20,7 +20,7 @@ def calculate_smape(filepath):
         create_query = f"""
             CREATE TEMP TABLE common 
             AS 
-            SELECT row_number() OVER() as id, column0
+            SELECT row_number() OVER() as id, CAST(column0 AS DOUBLE) AS column0 
             FROM read_csv('{DEFAULT}')
             """
         db.sql(create_query)
@@ -32,7 +32,7 @@ def calculate_smape(filepath):
             query = f"""
             WITH 
             approx AS (
-                SELECT row_number() OVER() as id, column0
+                SELECT row_number() OVER() as id, CAST(column0 AS DOUBLE) AS column0 
                 FROM read_csv('{csv_path}')
             )
             SELECT SUM(ABS(a.column0 - c.column0) / (ABS(c.column0) + ABS(a.column0) + 1e-39)) / COUNT(*) * 100 AS smape_result

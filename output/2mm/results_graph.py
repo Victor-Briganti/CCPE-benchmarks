@@ -46,7 +46,7 @@ def plot_graph(results, title, approx, threshold=None):
 
 def calculate_mean(dirpath):
     results = []
-    for file in os.listdir(dirpath):
+    for file in sorted(os.listdir(dirpath)):
         results.append(pd.read_csv(dirpath + "/" + file).mean().values[0])
 
     return results
