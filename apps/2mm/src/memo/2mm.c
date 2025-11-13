@@ -74,7 +74,7 @@ static void kernel_2mm(int ni, int nj, int nk, int nl, DATA_TYPE alpha,
 // Assumes B and C are pre-transposed for contiguous access
 #pragma omp parallel num_threads(NUM_THREADS)
   {
-#pragma omp for schedule(dynamic)
+#pragma omp for schedule(static)
     for (int i = 0; i < ni; i++)
       for (int j = 0; j < nj; j++) {
         DATA_TYPE acc = 0;
@@ -87,7 +87,7 @@ static void kernel_2mm(int ni, int nj, int nk, int nl, DATA_TYPE alpha,
         tmp[i][j] = 0;
       }
 
-#pragma omp for schedule(dynamic)
+#pragma omp for schedule(static)
     for (int i = 0; i < ni; i++)
       for (int j = 0; j < nl; j++) {
         D[i][j] *= beta;

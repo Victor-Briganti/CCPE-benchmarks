@@ -37,19 +37,19 @@ int main(int argc, char *argv[]) {
 #pragma omp parallel num_threads(NUM_THREADS)
   {
 #if PERFO == 0
-#pragma omp approx for perfo(init, (int)(10 * DROP)) schedule(dynamic)         \
+#pragma omp approx for perfo(init, (int)(10 * DROP)) schedule(static)         \
     collapse(2)
 #elif PERFO == 1
-#pragma omp approx for perfo(fini, (int)(10 * DROP)) schedule(dynamic)         \
+#pragma omp approx for perfo(fini, (int)(10 * DROP)) schedule(static)         \
     collapse(2)
 #elif PERFO == 2
-#pragma omp approx for perfo(large, (int)(10 * DROP)) schedule(dynamic)        \
+#pragma omp approx for perfo(large, (int)(10 * DROP)) schedule(static)        \
     collapse(2)
 #elif PERFO == 3
-#pragma omp approx for perfo(small, (int)(10 * DROP)) schedule(dynamic)        \
+#pragma omp approx for perfo(small, (int)(10 * DROP)) schedule(static)        \
     collapse(2)
 #elif PERFO == 4
-#pragma omp approx for perfo(default, (int)(10 * DROP)) schedule(dynamic)      \
+#pragma omp approx for perfo(default, (int)(10 * DROP)) schedule(static)      \
     collapse(2)
 #endif
     {

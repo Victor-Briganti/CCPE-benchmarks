@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 // Multiply
 #pragma omp approx fastmath
   {
-#pragma omp parallel for num_threads(NUM_THREADS) collapse(2) schedule(dynamic)
+#pragma omp parallel for num_threads(NUM_THREADS) collapse(2) schedule(static)
     for (int i = 0; i < size; i++) {
       for (int j = 0; j < size; j++) {
         C[i * size + j] = 0;

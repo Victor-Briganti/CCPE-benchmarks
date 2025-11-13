@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
   }
 
 // Multiply
-#pragma omp parallel for num_threads(NUM_THREADS) schedule(dynamic) collapse(2)
+#pragma omp parallel for num_threads(NUM_THREADS) schedule(static) collapse(2)
   for (int i = 0; i < size; i++) {
     for (int j = 0; j < size; j++) {
       DATATYPE temp = 0;
