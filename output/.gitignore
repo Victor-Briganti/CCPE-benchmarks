@@ -1,0 +1,5 @@
+.env/
+raw/
+results/
+csv/
+perf/

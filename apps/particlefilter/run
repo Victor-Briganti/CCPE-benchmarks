@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+name=$1
+task=$2
+param=$3
+
+if [[ "$name" != "default" ]] && [[ "$name" != "memo" ]] && [[ "$name" != "fast" ]]; then
+  for ((i = 0 ; i < 10; i++)); do
+    OMP_PROC_BIND=true perf stat -o /home/aJoaoBriganti/benchmarks/apps/particlefilter/output/perf_test_$name$task-drop$param-$i /home/aJoaoBriganti/benchmarks/apps/particlefilter/bin/particle_$name.a -x 100 -y 100 -z 100 -np 100000 > /home/aJoaoBriganti/benchmarks/apps/particlefilter/output/test_$name$task-drop$param-$i
+  done
+elif [[ "$name" == "memo" ]]; then
+  for ((i = 0 ; i < 10; i++)); do
+    OMP_PROC_BIND=true perf stat -o /home/aJoaoBriganti/benchmarks/apps/particlefilter/output/perf_test_$name$task-threshold$param-$i /home/aJoaoBriganti/benchmarks/apps/particlefilter/bin/particle_$name.a -x 100 -y 100 -z 100 -np 100000 > /home/aJoaoBriganti/benchmarks/apps/particlefilter/output/test_$name$task-threshold$param-$i
+  done
+else
+  for ((i = 0 ; i < 10; i++)); do
+    OMP_PROC_BIND=true perf stat -o /home/aJoaoBriganti/benchmarks/apps/particlefilter/output/perf_test_$name$task-$i /home/aJoaoBriganti/benchmarks/apps/particlefilter/bin/particle_$name.a -x 100 -y 100 -z 100 -np 100000 > /home/aJoaoBriganti/benchmarks/apps/particlefilter/output/test_$name$task-$i
+  done
+fi
