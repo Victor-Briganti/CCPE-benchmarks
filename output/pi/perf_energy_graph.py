@@ -61,7 +61,7 @@ def calculate_edp(approx, threshold = None):
 
     for t in THREAD:
         df = pd.read_csv(csv_path + str(t))
-        edp = df['energy-cores'] * df['real']**2
+        edp = df['energy-pkg'] * df['real']**2
         array.append(edp.mean())
 
     return pd.DataFrame(array)
